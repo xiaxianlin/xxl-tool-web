@@ -47,18 +47,8 @@ const AuthLayout: React.FC = () => {
             </Text>
           </Footer>
         </Layout>
-        <Sider
-          className={styles.sider}
-          collapsedWidth={0}
-          breakpoint="lg"
-          width="33%"
-          trigger={null}
-        >
-          <div
-            style={{
-              backgroundImage: `url(${bannerUrl})`,
-            }}
-          />
+        <Sider className={styles.sider} collapsedWidth={0} breakpoint="lg" width="33%" trigger={null}>
+          <div style={{ backgroundImage: `url(${bannerUrl})` }} />
         </Sider>
       </Layout>
     </ConfigProvider>

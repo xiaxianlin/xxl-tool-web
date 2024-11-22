@@ -1,8 +1,8 @@
-import { LoginAccount } from '@/apis/auth/types';
+import { UserRole } from '@/constants/user';
 import type { RouteObjectType } from '@/router/types';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-interface AccountState extends LoginAccount {
+interface AccountState extends UserAccount {
   loading: boolean;
   routes?: RouteObjectType[]; // 可选，用于从远程获取用户路由
 }
@@ -10,7 +10,7 @@ interface AccountState extends LoginAccount {
 const initialState: AccountState = {
   uid: '',
   username: '',
-  role: '',
+  role: UserRole.Guest,
   loading: false,
 };
 

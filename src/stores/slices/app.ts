@@ -7,7 +7,7 @@ interface AppState {
 }
 
 const initialState: AppState = {
-  themeMode: 'auto',
+  themeMode: 'light',
   lang: 'en',
 };
 

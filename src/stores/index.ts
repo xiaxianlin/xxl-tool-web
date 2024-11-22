@@ -7,10 +7,7 @@ import app from './slices/app';
 import user from './slices/user';
 
 const store = configureStore({
-  reducer: {
-    user,
-    app,
-  },
+  reducer: { user, app },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

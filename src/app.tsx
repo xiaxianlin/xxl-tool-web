@@ -37,9 +37,7 @@ const App: React.FC = () => {
     <ConfigProvider theme={theme}>
       <ThemeProvider<AppToken>
         themeMode={themeMode}
-        customToken={{
-          headerHeight: 64, // 导航栏高度
-        }}
+        customToken={{ headerHeight: 64 }}
         theme={(appearance) => ({
           components: {
             Layout: {
