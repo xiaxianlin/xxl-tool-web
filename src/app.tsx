@@ -8,6 +8,7 @@ import { generateRoutes } from '@/router';
 import asyncRoutes from '@/router/routes';
 import { ConfigProvider } from 'antd';
 import { ThemeProvider } from 'antd-style';
+import zhCN from 'antd/locale/zh_CN';
 import React, { useMemo } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
@@ -23,9 +24,6 @@ declare module 'antd-style' {
 const App: React.FC = () => {
   const { themeMode } = useAppSelector((state) => state.app);
 
-  // 如需远程加载路由
-  // const { routes: asyncRoutes } = useAppSelector(state => state.user)
-
   // 构造路由
   const routes = useMemo(() => {
     return generateRoutes(asyncRoutes);
@@ -34,21 +32,11 @@ const App: React.FC = () => {
   const router = createBrowserRouter(routes);
 
   return (
-    <ConfigProvider theme={theme}>
+    <ConfigProvider theme={theme} locale={zhCN}>
       <ThemeProvider<AppToken>
         themeMode={themeMode}
         customToken={{ headerHeight: 64 }}
-        theme={(appearance) => ({
-          components: {
-            Layout: {
-              headerHeight: 64,
-              headerBg: '#09121a',
-              headerColor: '#fff',
-              siderBg: '#fff',
-              bodyBg: appearance === 'dark' ? '#000000' : '#e4ebf1',
-            },
-          },
-        })}
+        theme={() => ({ components: { Layout: { headerHeight: 64 } } })}
       >
         <GlobalStyles />
         <NProgressBar />

@@ -14,8 +14,15 @@ declare global {
     uid: string;
     username: string;
     role: UserRole;
+    status: number;
     createTime?: string;
     updateTime?: string;
+  }
+
+  interface UserCreateModel {
+    username?: string;
+    password?: string;
+    role?: UserRole;
   }
 }
 

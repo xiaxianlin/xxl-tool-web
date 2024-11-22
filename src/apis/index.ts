@@ -1,5 +1,6 @@
 import { appendPending, removePending } from '@/apis/pending';
 import { getToken } from '@/utils/token.ts';
+import { message } from 'antd';
 import axios, { type AxiosResponse } from 'axios';
 import { HttpResponse } from './types';
 
@@ -55,7 +56,10 @@ request.interceptors.response.use(
 
 request.interceptors.response.use(
   <T>(response: T): T => response,
-  (error) => Promise.reject(error),
+  (error) => {
+    message.error(error.message);
+    Promise.reject(error);
+  },
 );
 
 export default request;

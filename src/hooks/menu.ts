@@ -14,16 +14,9 @@ export type MenuObject = {
 };
 
 // 路由转菜单
-const route2menu = (
-  routes?: RouteObjectType[],
-  permissions?: string[],
-): MenuObject[] => {
+const route2menu = (routes?: RouteObjectType[], permissions?: string[]): MenuObject[] => {
   return (routes || [])
-    .filter(
-      (route) =>
-        !route.hideInMenu &&
-        (!route.access || permissions?.includes(route.access)),
-    )
+    .filter((route) => !route.hideInMenu && (!route.access || permissions?.includes(route.access)))
     .map((route) => {
       const menu: MenuObject = {
         ...pick(route, ['type', 'key']),
@@ -66,10 +59,7 @@ const useMenu = (routes?: RouteObjectType[], permissions?: string[]) => {
   const [openKeys, setOpenKeys] = useState<string[]>([]);
 
   // 当前菜单
-  const menus = useMemo(
-    () => route2menu(routes, permissions),
-    [routes, permissions],
-  );
+  const menus = useMemo(() => route2menu(routes, permissions), [routes, permissions]);
 
   // 更新菜单映射
   useEffect(() => {
