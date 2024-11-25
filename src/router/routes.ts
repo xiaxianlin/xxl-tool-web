@@ -2,18 +2,15 @@
 // | 本地路由表
 // +---------------------------------
 
-import type { RouteObjectType } from '@/router/types';
-
 export const DEFAULT_ROUTE = '/';
 export const LOGIN_ROUTE = '/login';
-export const SIGNUP_ROUTE = '/signup';
 
 const routes: RouteObjectType[] = [
   {
     path: DEFAULT_ROUTE,
     key: 'root',
     name: 'Root',
-    component: '/layouts',
+    component: '/layouts/page',
     children: [
       {
         key: 'index',
@@ -50,28 +47,6 @@ const routes: RouteObjectType[] = [
         path: LOGIN_ROUTE,
         key: 'auth.login',
         component: '/pages/auth/login',
-      },
-    ],
-  },
-  {
-    key: 'exception',
-    component: '/layouts/frame',
-    hideInMenu: true,
-    children: [
-      {
-        path: 'error',
-        key: 'exception.error',
-        component: '/pages/exception/500',
-      },
-      {
-        path: 'forbidden',
-        key: 'exception.forbidden',
-        component: '/pages/exception/403',
-      },
-      {
-        path: '*',
-        key: 'exception.not-found',
-        component: '/pages/exception/404',
       },
     ],
   },

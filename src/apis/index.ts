@@ -1,8 +1,9 @@
 import { appendPending, removePending } from '@/apis/pending';
-import { getToken } from '@/utils/token.ts';
+import { router } from '@/router';
+import { LOGIN_ROUTE } from '@/router/routes';
+import { delToken, getToken } from '@/utils/token.ts';
 import { message } from 'antd';
 import axios, { type AxiosResponse } from 'axios';
-import { HttpResponse } from './types';
 
 /**
  * 请求器
@@ -40,7 +41,10 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   <T extends HttpResponse>(response: AxiosResponse<T>): T => {
     removePending(response.config);
-
+    if (response.data?.status === 401) {
+      delToken();
+      router.navigate(LOGIN_ROUTE);
+    }
     if (response.data?.status !== 0) {
       throw response.data;
     }

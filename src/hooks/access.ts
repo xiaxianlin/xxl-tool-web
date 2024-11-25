@@ -1,14 +1,14 @@
 import { UserRole } from '@/constants/user';
-import { useAppSelector } from '@/hooks/store';
+import { useAppModel } from '@/models/app';
 
 const useAccess = (): Record<string, boolean> => {
-  const { role } = useAppSelector((state) => state.user);
+  const { user } = useAppModel();
 
   return {
-    admin: role === UserRole.Admin,
-    manager: role === UserRole.Manager,
-    user: role === UserRole.User,
-    guest: role === UserRole.Guest,
+    admin: user?.role === UserRole.Admin,
+    manager: user?.role === UserRole.Manager,
+    user: user?.role === UserRole.User,
+    guest: user?.role === UserRole.Guest,
   };
 };
 

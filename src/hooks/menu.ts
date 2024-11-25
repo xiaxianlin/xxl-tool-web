@@ -1,5 +1,4 @@
 import { IconName } from '@/components/icon';
-import type { RouteObjectType } from '@/router/types';
 import { flatMap, isArray, omit, pick, union } from 'lodash';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';

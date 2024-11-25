@@ -1,5 +1,5 @@
 import { addUser, deleteUser, modifyUser, modifyUserStatus, searchUsers } from '@/apis/user';
-import { useSimpleTable } from '@/hooks/simple-table';
+import { useSimpleTable } from '@/hooks/useSimpleTable';
 import { useBoolean, useMemoizedFn, useRequest } from 'ahooks';
 import { useMemo, useState } from 'react';
 import { UserSearchParams } from './types';
