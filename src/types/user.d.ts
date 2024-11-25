@@ -19,7 +19,7 @@ declare global {
     updateTime?: string;
   }
 
-  interface UserCreateModel {
+  interface UserFormModel {
     username?: string;
     password?: string;
     role?: UserRole;
