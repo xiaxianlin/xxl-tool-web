@@ -1,5 +1,4 @@
 import { login } from '@/apis/auth';
-import type { LoginData } from '@/apis/auth/types';
 import { DEFAULT_ROUTE } from '@/router/routes';
 import { setToken } from '@/utils/token';
 import { useBoolean } from 'ahooks';

@@ -6,7 +6,7 @@ const useStyles = createStyles(({ css, token, prefixCls }) => {
       &.${prefixCls}-layout-sider {
         position: fixed;
         left: 0;
-        top: ${token.headerHeight}px; // header height
+        top: 64px;
         bottom: 0;
         z-index: ${token.zIndexPopupBase};
       }
