@@ -12,7 +12,7 @@ export const UserFilter: React.FC<UserFilterProps> = ({ form, onQuery, onReset }
   return (
     <Card bordered={false} styles={{ body: { paddingBlock: 24 } }}>
       <Form autoComplete="off" form={form} layout="inline" labelCol={{ span: 5 }} wrapperCol={{ span: 19 }}>
-        <Form.Item<UserSearchParams> name="username" label="账户名" style={{ flex: 1 }}>
+        <Form.Item<UserSearchParams> name="username" label="用户名" style={{ flex: 1 }}>
           <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item<UserSearchParams> name="role" label="角色" style={{ flex: 1 }}>

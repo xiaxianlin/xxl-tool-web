@@ -1,8 +1,8 @@
-import Header from '@/components/header';
-import Sidebar from '@/components/sidebar';
 import { Layout } from 'antd';
 import React from 'react';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
+import Header from './components/header';
+import Sidebar from './components/sidebar';
 
 const PageLayout: React.FC = () => {
   return (

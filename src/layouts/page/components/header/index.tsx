@@ -1,6 +1,4 @@
-import FullscreenButton from '@/components/header/fullscreen-button';
-import useStyles from '@/components/header/styles';
-import ThemeModeButton from '@/components/header/theme-mode-button';
+import useStyles from '@/layouts/page/components/header/styles';
 import { Avatar, Col, Layout, Row, Space, Typography } from 'antd';
 import { ThemeProvider } from 'antd-style';
 import type React from 'react';
@@ -27,23 +25,11 @@ const Header: React.FC = () => {
             <ThemeProvider themeMode="dark">
               <Space align="center">
                 <Avatar shape="square" src="/favicon.png" />
-                <Typography.Title
-                  level={5}
-                  style={{
-                    whiteSpace: 'nowrap',
-                    textTransform: 'uppercase',
-                  }}
-                >
+                <Typography.Title level={5} style={{ whiteSpace: 'nowrap', textTransform: 'uppercase' }}>
                   {import.meta.env.VITE_APP_NAME}
                 </Typography.Title>
               </Space>
             </ThemeProvider>
-          </Col>
-          <Col>
-            <Space align="center" size="middle">
-              <ThemeModeButton />
-              <FullscreenButton />
-            </Space>
           </Col>
         </Row>
       </Layout.Header>

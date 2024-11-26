@@ -1,8 +1,9 @@
+import { DeleteIconButton, EditIconButton } from '@/components/buttons';
 import PageContainer from '@/components/page-container';
 import { SimpleTable } from '@/components/simple-table';
+import { getTimeColumns } from '@/constants/table';
 import { UserRoleTitle } from '@/constants/user';
-import { formatTime } from '@/utils/time';
-import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import { useMemoizedFn } from 'ahooks';
 import { Button, Card, Modal, Space, Switch, TableProps } from 'antd';
 import React, { useMemo } from 'react';
@@ -16,8 +17,8 @@ const QueryTable: React.FC = () => {
   const handleDelete = useMemoizedFn((uid: string) => {
     Modal.confirm({
       centered: true,
-      title: '删除账户',
-      content: '你确定要删除此账户吗？',
+      title: '删除用户',
+      content: '你确定要删除此用户吗？',
       onOk: () => handleDeleteUser(uid),
     });
   });
@@ -25,7 +26,7 @@ const QueryTable: React.FC = () => {
   const columns = useMemo<TableProps<UserAccount>['columns']>(
     () => [
       {
-        title: '账户名',
+        title: '用户名',
         key: 'username',
         dataIndex: 'username',
         width: 200,
@@ -51,19 +52,7 @@ const QueryTable: React.FC = () => {
           />
         ),
       },
-      {
-        title: '创建时间',
-        key: 'createTime',
-        dataIndex: 'createTime',
-        sorter: true,
-        render: (value) => formatTime(value),
-      },
-      {
-        title: '最近修改时间',
-        key: 'updateTime',
-        dataIndex: 'updateTime',
-        render: (value) => formatTime(value),
-      },
+      ...getTimeColumns({ sorter: true }),
       {
         title: '操作',
         key: 'action',
@@ -71,8 +60,8 @@ const QueryTable: React.FC = () => {
         render: (_, user) => {
           return (
             <Space>
-              <Button size="small" type="text" icon={<EditOutlined />} onClick={() => showForm(user)} />
-              <Button size="small" type="text" icon={<DeleteOutlined />} onClick={() => handleDelete(user.uid)} />
+              <EditIconButton onClick={() => showForm(user)} />
+              <DeleteIconButton onClick={() => handleDelete(user.uid)} />
             </Space>
           );
         },

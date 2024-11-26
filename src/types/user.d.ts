@@ -24,6 +24,18 @@ declare global {
     password?: string;
     role?: UserRole;
   }
+
+  interface Role {
+    key: string;
+    name: string;
+    createTime?: string;
+    updateTime?: string;
+  }
+
+  interface RoleFormModel {
+    key?: string;
+    name?: string;
+  }
 }
 
 export {};

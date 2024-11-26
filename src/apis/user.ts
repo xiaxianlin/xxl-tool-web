@@ -1,4 +1,4 @@
-import request from '@/apis';
+import request from '@/apis/core/http';
 
 /**  获取用户列表 */
 export const searchUsers = async (params?: SearchParams): Promise<SearchResult<UserAccount>> => {

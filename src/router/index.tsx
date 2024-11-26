@@ -3,7 +3,6 @@
 // | 约定：所有布局组件放置layouts目录，所有页面组件放置pages目录，加载组件放置同目录底下
 // +---------------------------------
 
-import PermissionRoute from '@/components/permission-route';
 import { isArray, pick, trim } from 'lodash';
 import React, { ComponentType, Suspense, lazy } from 'react';
 import { Navigate, RouteObject, createBrowserRouter } from 'react-router-dom';
@@ -34,13 +33,9 @@ function parserRoute(route: RouteObjectType): RouteObject {
         const LazyComponent = lazy(lazyPages[indexKey]);
         const FallbackComponent = loadingPages[loadingKey];
         component.element = React.createElement(
-          PermissionRoute,
-          { access: route.access },
-          React.createElement(
-            Suspense,
-            { fallback: FallbackComponent && React.createElement(FallbackComponent) },
-            React.createElement(LazyComponent),
-          ),
+          Suspense,
+          { fallback: FallbackComponent && React.createElement(FallbackComponent) },
+          React.createElement(LazyComponent),
         );
       }
     } catch (e) {}

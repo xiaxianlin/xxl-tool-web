@@ -1,5 +1,3 @@
-import Icon from '@/components/icon';
-import useStyles from '@/components/sidebar/styles';
 import useAccess from '@/hooks/access';
 import useMenu, { type MenuObject } from '@/hooks/menu';
 import { useAppModel } from '@/models/app';
@@ -10,6 +8,7 @@ import type { ItemType } from 'antd/es/menu/interface';
 import { isArray, pick } from 'lodash';
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useStyles from './styles';
 const { Sider } = Layout;
 
 type MenuItemType = ItemType<{
@@ -31,9 +30,6 @@ const Sidebar: React.FC = () => {
     function travel(menus: MenuObject[]) {
       return menus.map((menu) => {
         const row: MenuItemType = pick(menu, ['path', 'key', 'type', 'label']);
-        // 避免动态渲染，推荐使用样式
-        // row.label = menu?.type === 'group' && collapsed ? undefined : row.label
-        row.icon = menu?.icon && <Icon name={menu.icon} />;
         if (isArray(menu.children) && menu.children.length) {
           row.children = travel(menu.children);
         }

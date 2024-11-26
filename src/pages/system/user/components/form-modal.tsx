@@ -36,7 +36,7 @@ export const UserFormModel: FC<UserFormModelProps> = ({ visible, initialValues, 
   return (
     <Modal
       centered
-      title="添加用户"
+      title={required ? '添加用户' : '修改用户'}
       open={visible}
       onCancel={handleCancel}
       onOk={() => form.submit()}
@@ -52,7 +52,7 @@ export const UserFormModel: FC<UserFormModelProps> = ({ visible, initialValues, 
         onFinish={handleFinished}
         onValuesChange={() => !changed && setChanged(true)}
       >
-        <Form.Item<UserFormModel> name="username" label="账户名" rules={[{ required }]}>
+        <Form.Item<UserFormModel> name="username" label="用户名" rules={[{ required }]}>
           <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item<UserFormModel> name="password" label={required ? '密码' : '新密码'} rules={[{ required }]}>

@@ -1,4 +1,4 @@
-import { appendPending, removePending } from '@/apis/pending';
+import { appendPending, removePending } from '@/apis/core/pending';
 import { router } from '@/router';
 import { LOGIN_ROUTE } from '@/router/routes';
 import { delToken, getToken } from '@/utils/token.ts';
