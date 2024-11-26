@@ -7,6 +7,9 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
   },
+  build: {
+    chunkSizeWarningLimit: 2000,
+  },
   server: {
     proxy: {
       '/api': {

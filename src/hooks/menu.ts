@@ -1,4 +1,3 @@
-import { IconName } from '@/components/icon';
 import { flatMap, isArray, omit, pick, union } from 'lodash';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -6,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 export type MenuObject = {
   key: string;
   path?: string;
-  icon?: IconName;
   label?: string;
   type?: 'group';
   children?: MenuObject[];
@@ -19,7 +17,6 @@ const route2menu = (routes?: RouteObjectType[], permissions?: string[]): MenuObj
     .map((route) => {
       const menu: MenuObject = {
         ...pick(route, ['type', 'key']),
-        icon: route?.icon as IconName,
         path: route.fullPath || route.path,
         label: route?.name,
       };

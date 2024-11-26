@@ -1,0 +1,1 @@
+import{j as e,aa as s}from"./index-DDII5y11.js";const o=()=>e.jsxDEV(s,{to:"/pages/dashboards/blog"},void 0,!1,{fileName:"/Users/bytedance/projects/xxl-tool-web/src/pages/index.tsx",lineNumber:6,columnNumber:10},void 0);export{o as default};
