@@ -4,10 +4,12 @@ import request from '@/apis/core/http';
  * 用户登录
  * @param data
  */
-export function login(data: LoginData): Promise<HttpResponse<LoginResult>> {
-  return request.post('/login', data);
-}
+export const login = async (model: LoginData) => {
+  const { data } = await request.post<LoginResult>('/login', model);
+  return data;
+};
 
-export function check_login(data: LoginData): Promise<HttpResponse<UserAccount>> {
-  return request.post('/check_login', data);
-}
+export const checkLogin = async () => {
+  const { data } = await request.post<UserAccount>('/check_login');
+  return data;
+};

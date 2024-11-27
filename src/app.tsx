@@ -1,6 +1,5 @@
 import '@/assets/styles/global.css';
-import PageLoading from '@/components/page-loading';
-import NProgressBar from '@/components/progress-bar';
+import PageLoading from '@/components/app/page-loading';
 import theme from '@/config/theme';
 import { GlobalStyles } from '@/global';
 import { router } from '@/router';
@@ -9,7 +8,7 @@ import { StyleProvider, ThemeProvider } from 'antd-style';
 import zhCN from 'antd/locale/zh_CN';
 import React from 'react';
 import { RouterProvider } from 'react-router-dom';
-import LayoutLoading from './components/layout-loading';
+import LayoutLoading from './components/app/layout-loading';
 import { useAppModel } from './models/app';
 
 const AppContainer = () => {
@@ -30,7 +29,6 @@ const App: React.FC = () => {
           theme={() => ({ components: { Layout: { headerHeight: 64 } } })}
         >
           <GlobalStyles />
-          <NProgressBar />
           <AppContainer />
         </ThemeProvider>
       </ConfigProvider>

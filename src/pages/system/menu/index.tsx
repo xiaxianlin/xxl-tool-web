@@ -1,5 +1,5 @@
-import { AddIconButton, DeleteIconButton, EditIconButton } from '@/components/buttons';
-import PageContainer from '@/components/page-container';
+import { AddIconButton, DeleteIconButton, EditIconButton } from '@/components/common/buttons';
+import PageContainer from '@/components/app/page-container';
 import { getTimeColumns } from '@/constants/table';
 import { PlusOutlined } from '@ant-design/icons';
 import { useMemoizedFn } from 'ahooks';

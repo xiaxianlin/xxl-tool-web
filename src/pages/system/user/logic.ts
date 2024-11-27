@@ -1,7 +1,7 @@
 import { addUser, deleteUser, modifyUser, modifyUserStatus, searchUsers } from '@/apis/user';
 import { useSimpleTable } from '@/hooks/simple-table';
 import { useBoolean, useMemoizedFn, useRequest } from 'ahooks';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { UserSearchParams } from './types';
 
 export const useUserLogic = () => {
@@ -15,8 +15,6 @@ export const useUserLogic = () => {
   const { runAsync: handleModifyUser } = useRequest(modifyUser, { manual: true, onSuccess });
   const { loading, run: changeStatus } = useRequest(modifyUserStatus, { manual: true, onSuccess });
   const { runAsync: handleDeleteUser } = useRequest(deleteUser, { manual: true, onSuccess });
-
-  const initialValues = useMemo(() => (user ? { username: user?.username, role: user?.role } : undefined), [user]);
 
   const showForm = useMemoizedFn((user?: UserAccount) => {
     setTrue();
@@ -33,8 +31,8 @@ export const useUserLogic = () => {
   return {
     table,
     form: {
+      user,
       visible,
-      initialValues,
       onHide,
       onSubmit,
     },

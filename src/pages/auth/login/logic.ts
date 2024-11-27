@@ -23,7 +23,7 @@ export const useLoginLogic = () => {
     setSubmitting(true);
     try {
       const formData = pick(values, ['username', 'password']) as LoginData;
-      const { data } = await login(formData);
+      const data = await login(formData);
       setToken(data.access_token);
       setError(undefined);
       message.success('Welcome back 🎉');

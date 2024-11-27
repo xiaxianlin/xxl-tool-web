@@ -1,20 +1,22 @@
-import { UserRole, UserRoleTitle } from '@/constants/user';
+import RoleSelect from '@/components/system/role-select';
+import { useAppModel } from '@/models/app';
 import { useBoolean } from 'ahooks';
-import { Form, FormProps, Input, Modal, Select } from 'antd';
+import { Form, FormProps, Input, Modal } from 'antd';
 import { FC, useEffect, useState } from 'react';
 
 interface UserFormModelProps {
   visible?: boolean;
-  initialValues?: UserFormModel;
+  user?: UserAccount;
   onHide?: () => void;
   onSubmit?: (values: UserFormModel) => Promise<any>;
 }
-export const UserFormModel: FC<UserFormModelProps> = ({ visible, initialValues, onHide, onSubmit }) => {
+export const UserFormModel: FC<UserFormModelProps> = ({ visible, user, onHide, onSubmit }) => {
+  const { configs } = useAppModel();
   const [form] = Form.useForm<UserFormModel>();
   const [changed, setChanged] = useState(false);
   const [submitting, { setTrue, setFalse }] = useBoolean(false);
 
-  const required = !initialValues;
+  const required = !user;
 
   const handleCancel = () => {
     form.resetFields();
@@ -29,8 +31,8 @@ export const UserFormModel: FC<UserFormModelProps> = ({ visible, initialValues, 
   };
 
   useEffect(() => {
-    visible && form.setFieldsValue(initialValues || { role: UserRole.User });
-  }, [visible, initialValues]);
+    visible && form.setFieldsValue(user ? { username: user.username, role: user.role.key } : {});
+  }, [visible, user]);
 
   return (
     <Modal
@@ -58,11 +60,7 @@ export const UserFormModel: FC<UserFormModelProps> = ({ visible, initialValues, 
           <Input placeholder="请输入" maxLength={20} showCount />
         </Form.Item>
         <Form.Item<UserFormModel> name="role" label="角色" rules={[{ required }]}>
-          <Select placeholder="请选择">
-            <Select.Option value={UserRole.Manager}>{UserRoleTitle[UserRole.Manager]}</Select.Option>
-            <Select.Option value={UserRole.User}>{UserRoleTitle[UserRole.User]}</Select.Option>
-            <Select.Option value={UserRole.Guest}>{UserRoleTitle[UserRole.Guest]}</Select.Option>
-          </Select>
+          <RoleSelect exclude={configs?.adminRoleKey} />
         </Form.Item>
       </Form>
     </Modal>

@@ -1,8 +1,7 @@
-import { DeleteIconButton, EditIconButton } from '@/components/buttons';
-import PageContainer from '@/components/page-container';
-import { SimpleTable } from '@/components/simple-table';
+import PageContainer from '@/components/app/page-container';
+import { DeleteIconButton, EditIconButton } from '@/components/common/buttons';
+import { SimpleTable } from '@/components/common/simple-table';
 import { getTimeColumns } from '@/constants/table';
-import { UserRoleTitle } from '@/constants/user';
 import { PlusOutlined } from '@ant-design/icons';
 import { useMemoizedFn } from 'ahooks';
 import { Button, Card, Modal, Space, Switch, TableProps } from 'antd';
@@ -35,7 +34,7 @@ const SystemUserPage: React.FC = () => {
         title: '角色',
         dataIndex: 'role',
         key: 'role',
-        render: (value) => UserRoleTitle[value],
+        render: (role: Role) => role.name,
         width: 200,
       },
       {

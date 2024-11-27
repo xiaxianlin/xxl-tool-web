@@ -31,6 +31,10 @@ declare global {
   }
 
   type RouteObjectType = RouteWithChildren | RouteWithoutChildren;
+
+  interface AppConfigs {
+    adminRoleKey: string;
+  }
 }
 
 export {};

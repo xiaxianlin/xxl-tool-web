@@ -1,4 +1,4 @@
-import PageContainer from '@/components/page-container';
+import PageContainer from '@/components/app/page-container';
 import { Card, Col, Layout, Row, Skeleton, Space } from 'antd';
 import { ThemeProvider } from 'antd-style';
 import type React from 'react';

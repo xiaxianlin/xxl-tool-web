@@ -1,5 +1,3 @@
-import { UserRole } from '@/constants/user';
-
 declare global {
   interface LoginData {
     username: string;
@@ -13,7 +11,7 @@ declare global {
   interface UserAccount {
     uid: string;
     username: string;
-    role: UserRole;
+    role: Role;
     status: number;
     createTime?: string;
     updateTime?: string;
@@ -22,7 +20,7 @@ declare global {
   interface UserFormModel {
     username?: string;
     password?: string;
-    role?: UserRole;
+    role?: string;
   }
 
   interface Role {

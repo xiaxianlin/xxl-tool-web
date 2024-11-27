@@ -1,4 +1,4 @@
-import { UserRoleTitle } from '@/constants/user';
+import RoleSelect from '@/components/system/role-select';
 import { Button, Card, Form, FormInstance, Input, Select } from 'antd';
 import type React from 'react';
 import { UserSearchParams } from '../types';
@@ -16,13 +16,7 @@ export const UserFilter: React.FC<UserFilterProps> = ({ form, onQuery, onReset }
           <Input placeholder="请输入" />
         </Form.Item>
         <Form.Item<UserSearchParams> name="role" label="角色" style={{ flex: 1 }}>
-          <Select allowClear placeholder="请选择">
-            {Object.entries(UserRoleTitle).map(([value, key]) => (
-              <Select.Option key={value} value={value}>
-                {key}
-              </Select.Option>
-            ))}
-          </Select>
+          <RoleSelect />
         </Form.Item>
         <Form.Item<UserSearchParams> name="status" label="状态" style={{ flex: 1 }}>
           <Select allowClear placeholder="请选择">

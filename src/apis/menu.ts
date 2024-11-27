@@ -8,7 +8,6 @@ export const getAllMenus = async (): Promise<Menu[]> => {
 
 export const addMenu = async (model: MenuFormModel): Promise<string> => {
   const { data } = await request.post('/menu', model);
-  console.log(data);
   return data;
 };
 

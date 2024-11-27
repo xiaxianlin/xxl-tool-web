@@ -1,4 +1,3 @@
-import useAccess from '@/hooks/access';
 import useMenu, { type MenuObject } from '@/hooks/menu';
 import { useAppModel } from '@/models/app';
 import asyncRoutes from '@/router/routes';
@@ -23,7 +22,6 @@ const Sidebar: React.FC = () => {
   const { themeMode } = useAppModel();
   const [collapsed, setCollapsed] = useState(false);
   const { styles } = useStyles();
-  const access = useAccess();
 
   // 构造菜单
   function generateMenus(menus: MenuObject[]): MenuItemType[] {
@@ -39,17 +37,8 @@ const Sidebar: React.FC = () => {
     return travel(menus);
   }
 
-  // 权限点集合
-  const permissions = useMemo(() => {
-    return Object.keys(access).filter((key) => access[key]);
-  }, [JSON.stringify(access)]);
-
   // 菜单
-  const { menus, selectedKeys, openKeys, setOpenKeys } = useMenu(
-    // 菜单渲染部分截取，根据需要自行调整
-    asyncRoutes.find((row) => row.path === '/')?.children,
-    permissions,
-  );
+  const { menus, selectedKeys, openKeys, setOpenKeys } = useMenu(asyncRoutes.find((row) => row.path === '/')?.children);
 
   // 菜单项
   const menuItems = useMemo(() => generateMenus(menus), [menus]);
