@@ -1,26 +1,26 @@
-import { DeleteIconButton, EditIconButton } from '@/components/buttons';
+import { AddIconButton, DeleteIconButton, EditIconButton } from '@/components/buttons';
 import PageContainer from '@/components/page-container';
 import { getTimeColumns } from '@/constants/table';
 import { PlusOutlined } from '@ant-design/icons';
 import { useMemoizedFn } from 'ahooks';
 import { Button, Card, Modal, Space, Table, TableProps } from 'antd';
 import React, { useMemo } from 'react';
-import { RoleFormModel } from './form';
-import { useRoleLogic } from './logic';
+import { MenuFormModel } from './form';
+import { useMenuLogic } from './logic';
 
-const SystemRolePage: React.FC = () => {
-  const { table, form, showForm, handleDeleteRole } = useRoleLogic();
+const SystemMenuPage: React.FC = () => {
+  const { table, form, showForm, handleDeleteMenu } = useMenuLogic();
 
   const handleDelete = useMemoizedFn((key: string) => {
     Modal.confirm({
       centered: true,
-      title: '删除角色',
-      content: '你确定要删除此角色吗？',
-      onOk: () => handleDeleteRole(key),
+      title: '删除菜单',
+      content: '你确定要删除此菜单吗？',
+      onOk: () => handleDeleteMenu(key),
     });
   });
 
-  const columns = useMemo<TableProps<Role>['columns']>(
+  const columns = useMemo<TableProps<Menu>['columns']>(
     () => [
       { title: '名称', dataIndex: 'name', width: 200 },
       { title: 'Key', dataIndex: 'key', width: 200 },
@@ -32,8 +32,9 @@ const SystemRolePage: React.FC = () => {
         render: (_, role) => {
           return (
             <Space>
-              <EditIconButton onClick={() => showForm(role)} />
+              <EditIconButton onClick={() => showForm('', role)} />
               <DeleteIconButton onClick={() => handleDelete(role.key)} />
+              {!role.parent && <AddIconButton onClick={() => showForm(role.key)} />}
             </Space>
           );
         },
@@ -43,13 +44,13 @@ const SystemRolePage: React.FC = () => {
   );
 
   return (
-    <PageContainer size="large" title="角色管理">
+    <PageContainer size="large" title="菜单管理">
       <Card
         bordered={false}
         className="with-table"
         title={
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => showForm()}>
-            添加角色
+          <Button type="primary" icon={<PlusOutlined />} onClick={() => showForm('')}>
+            添加一级菜单
           </Button>
         }
       >
@@ -61,9 +62,9 @@ const SystemRolePage: React.FC = () => {
           pagination={false}
         />
       </Card>
-      <RoleFormModel {...form} />
+      <MenuFormModel {...form} />
     </PageContainer>
   );
 };
 
-export default SystemRolePage;
+export default SystemMenuPage;

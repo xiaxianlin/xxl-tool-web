@@ -1,6 +1,7 @@
 import { useBoolean } from 'ahooks';
 import { Form, FormProps, Input, Modal } from 'antd';
 import { FC, useEffect, useState } from 'react';
+import { keyRules } from '../util';
 
 interface RoleFormModelProps {
   visible?: boolean;
@@ -22,10 +23,9 @@ export const RoleFormModel: FC<RoleFormModelProps> = ({ visible, initialValues, 
 
   const handleFinished: FormProps<RoleFormModel>['onFinish'] = (values) => {
     setTrue();
-    onSubmit?.(values).then(() => {
-      setFalse();
-      handleCancel();
-    });
+    onSubmit?.(values)
+      .then(() => handleCancel())
+      .finally(() => setFalse());
   };
 
   useEffect(() => {
@@ -51,11 +51,11 @@ export const RoleFormModel: FC<RoleFormModelProps> = ({ visible, initialValues, 
         onFinish={handleFinished}
         onValuesChange={() => !changed && setChanged(true)}
       >
-        <Form.Item<RoleFormModel> name="key" label="Key" rules={[{ required: true }]}>
-          <Input placeholder="请输入" />
+        <Form.Item<RoleFormModel> name="key" label="Key" rules={keyRules}>
+          <Input placeholder="请输入" maxLength={20} showCount />
         </Form.Item>
         <Form.Item<RoleFormModel> name="name" label="名称" rules={[{ required: true }]}>
-          <Input placeholder="请输入" />
+          <Input placeholder="请输入" maxLength={20} showCount />
         </Form.Item>
       </Form>
     </Modal>

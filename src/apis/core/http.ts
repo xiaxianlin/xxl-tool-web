@@ -62,7 +62,7 @@ request.interceptors.response.use(
   <T>(response: T): T => response,
   (error) => {
     message.error(error.message);
-    Promise.reject(error);
+    return Promise.reject(error);
   },
 );
 

@@ -8,10 +8,10 @@ import { useMemoizedFn } from 'ahooks';
 import { Button, Card, Modal, Space, Switch, TableProps } from 'antd';
 import React, { useMemo } from 'react';
 import { UserFilter } from './components/filter';
-import { UserFormModel } from './components/form-modal';
+import { UserFormModel } from './components/form';
 import { useUserLogic } from './logic';
 
-const QueryTable: React.FC = () => {
+const SystemUserPage: React.FC = () => {
   const { table, form, status, showForm, handleDeleteUser } = useUserLogic();
 
   const handleDelete = useMemoizedFn((uid: string) => {
@@ -91,4 +91,4 @@ const QueryTable: React.FC = () => {
   );
 };
 
-export default QueryTable;
+export default SystemUserPage;

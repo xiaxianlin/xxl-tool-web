@@ -2,7 +2,7 @@ import request from '@/apis/core/http';
 
 /**  获取用户列表 */
 export const getAllRoles = async (): Promise<Role[]> => {
-  const { data } = await request.get('/role/all');
+  const { data } = await request.get('/role');
   return data;
 };
 
@@ -17,6 +17,6 @@ export const modifyRole = async (model: RoleFormModel): Promise<{ success: boole
 };
 
 export const deleteRole = async (key: string): Promise<{ success: boolean }> => {
-  const { data } = await request.delete(`/Role/${key}`);
+  const { data } = await request.delete(`/role/${key}`);
   return data;
 };

@@ -35,6 +35,23 @@ declare global {
   interface RoleFormModel {
     key?: string;
     name?: string;
+    parent?: string;
+  }
+
+  interface Menu {
+    key: string;
+    name: string;
+    parent?: string;
+    createTime?: string;
+    updateTime?: string;
+    status?: number;
+    children?: Menu[];
+  }
+
+  interface MenuFormModel {
+    key?: string;
+    name?: string;
+    parent?: string;
   }
 }
 

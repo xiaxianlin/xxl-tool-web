@@ -39,6 +39,13 @@ const routes: RouteObjectType[] = [
             path: 'role',
             component: '/pages/system/role',
           },
+          {
+            key: 'system.menu',
+            name: '菜单管理',
+            fullPath: '/system/menu',
+            path: 'menu',
+            component: '/pages/system/menu',
+          },
         ],
       },
     ],

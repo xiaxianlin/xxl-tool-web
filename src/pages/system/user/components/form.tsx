@@ -23,10 +23,9 @@ export const UserFormModel: FC<UserFormModelProps> = ({ visible, initialValues, 
 
   const handleFinished: FormProps<UserFormModel>['onFinish'] = (values) => {
     setTrue();
-    onSubmit?.(values).then(() => {
-      setFalse();
-      handleCancel();
-    });
+    onSubmit?.(values)
+      .then(() => handleCancel())
+      .finally(() => setFalse());
   };
 
   useEffect(() => {
@@ -53,10 +52,10 @@ export const UserFormModel: FC<UserFormModelProps> = ({ visible, initialValues, 
         onValuesChange={() => !changed && setChanged(true)}
       >
         <Form.Item<UserFormModel> name="username" label="用户名" rules={[{ required }]}>
-          <Input placeholder="请输入" />
+          <Input placeholder="请输入" maxLength={20} showCount />
         </Form.Item>
         <Form.Item<UserFormModel> name="password" label={required ? '密码' : '新密码'} rules={[{ required }]}>
-          <Input placeholder="请输入" />
+          <Input placeholder="请输入" maxLength={20} showCount />
         </Form.Item>
         <Form.Item<UserFormModel> name="role" label="角色" rules={[{ required }]}>
           <Select placeholder="请选择">
